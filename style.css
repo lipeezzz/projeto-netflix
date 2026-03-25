@@ -1,0 +1,106 @@
+@charset "UTF-8"; /* Declaração de codificação do arquivo */
+
+:root {
+  /* Variáveis customizadas reutilizáveis */
+  --bg: #141414; /* Cor de fundo principal */
+  --text: #e5e5e5; /* Cor de texto padrão */
+  --surface: #202020; /* Cor de superfície (cards, painéis) */
+  --surface-strong: #292929; /* Superfície secundária mais escura */
+  --red: #e50914; /* Vermelho de destaque Netflix */
+  --shadow: 0 20px 35px rgba(0, 0, 0, 0.45); /* Sombra usada em cards */
+  --radius: 14px; /* Raio de borda arredondada */
+}
+
+* {
+  box-sizing: border-box; /* Inclui padding e border no cálculo de width/height */
+}
+
+body {
+  margin: 0; /* Remove margens padrão do body */
+  padding: 0; /* Remove padding padrão do body */
+  min-height: 100vh; /* Garante altura mínima de tela inteira */
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Fonte limpa e moderna */
+  background: radial-gradient(circle at 20% 0%, #2a2a2a 0%, #141414 35%); /* Gradiente escuro de fundo */
+  color: var(--text); /* Usa variável de texto */
+}
+
+header {
+  padding: 2rem 1.5rem 0.8rem; /* Espaçamento interno do header */
+  text-align: center; /* Centraliza o texto */
+}
+
+h1 {
+  font-size: clamp(1.6rem, 3vw, 2.5rem); /* Tamanho responsivo do título */
+  margin: 0; /* Remove margem padrão do h1 */
+  letter-spacing: 1px; /* Espaçamento entre letras */
+  color: #fff; /* Texto branco para contraste */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Pequeno sombreado de texto */
+}
+
+main {
+  display: grid; /* Layout em grid */
+  place-items: center; /* Centraliza conteúdo vertical/horizontal */
+  padding: 1.5rem; /* Espaçamento interno */
+}
+
+.profiles {
+  display: grid; /* Container em grid para perfis */
+  gap: 1.2rem; /* Espaço entre itens em grid */
+  width: min(100%, 520px); /* Largura máxima de 520px ou 100% */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Colunas responsivas */
+}
+
+.profile {
+  background: linear-gradient(180deg, #2c2c2c 0%, #1b1b1b 100%); /* Fundo degradê do card */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borda semi-transparente */
+  border-radius: var(--radius); /* Cantos arredondados */
+  overflow: hidden; /* Esconde overflow para manter borda limpa */
+  box-shadow: var(--shadow); /* Sombra aplicada no card */
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; /* Animação suave */
+  cursor: pointer; /* Indica clicável */
+}
+
+.profile:hover,
+.profile:focus-within {
+  transform: translateY(-4px) scale(1.02); /* Elevação ao passar o mouse */
+  border-color: rgba(255, 255, 255, 0.2); /* Borda mais clara no hover */
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.55); /* Sombra mais intensa no hover */
+}
+
+.profile figure {
+  margin: 0; /* Remove margem padrão do figure */
+  display: grid; /* Usa grid no figure */
+  place-items: center; /* Centraliza imagem e legenda */
+  padding: 1rem; /* Espaçamento interno */
+}
+
+.profile img {
+  width: min(120px, 100%); /* Largura adaptativa com limite de 120px */
+  aspect-ratio: 1 / 1; /* Mantém proporção quadrada */
+  object-fit: cover; /* Corta imagem mantendo o foco no centro */
+  border-radius: 100%; /* Torna a imagem circular */
+  border: 2px solid #444; /* Moldura ao redor da imagem */
+}
+
+figcaption {
+  margin-top: 0.7rem; /* Espaço acima da legenda */
+  font-size: 0.95rem; /* Tamanho de fonte */
+  color: #fff; /* Texto branco */
+  font-weight: 600; /* Peso semi-negrito */
+}
+
+@media (max-width: 600px) {
+  body {
+    padding-top: 1rem; /* Reduz padding no topo em telas pequenas */
+  }
+
+  header {
+    padding: 1rem; /* Ajusta padding do header no mobile */
+  }
+
+  .profiles {
+    gap: 0.9rem; /* Reduz espaçamento entre perfis */
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Ajuste de coluna para mobile */
+  }
+}
+
