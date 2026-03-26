@@ -11,6 +11,14 @@
   --radius: 14px; /* Raio de borda arredondada */
 }
 
+[data-theme="light"] {
+  --bg: #f3f3f3;
+  --text: #151515;
+  --surface: #ffffff;
+  --surface-strong: #e9e9e9;
+  --shadow: 0 14px 24px rgba(12, 12, 12, 0.16);
+}
+
 * {
   box-sizing: border-box; /* Inclui padding e border no cálculo de width/height */
 }
@@ -20,21 +28,50 @@ body {
   padding: 0; /* Remove padding padrão do body */
   min-height: 100vh; /* Garante altura mínima de tela inteira */
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Fonte limpa e moderna */
-  background: radial-gradient(circle at 20% 0%, #2a2a2a 0%, #141414 35%); /* Gradiente escuro de fundo */
+  background: var(--bg);
   color: var(--text); /* Usa variável de texto */
+}
+
+:root {
+  --bg: radial-gradient(circle at 20% 0%, #2a2a2a 0%, #141414 35%);
+}
+
+[data-theme="light"] {
+  --bg: radial-gradient(circle at 20% 0%, #ffffff 0%, #e5e5e5 35%);
 }
 
 header {
   padding: 2rem 1.5rem 0.8rem; /* Espaçamento interno do header */
   text-align: center; /* Centraliza o texto */
+  margin-top: 5em; /* Margem superior para posicionar o header mais abaixo na tela */
+  position: relative;
+}
+
+#theme-toggle {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: transform .2s ease, background .2s ease, color .2s ease, border .2s ease;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.05);
 }
 
 h1 {
   font-size: clamp(1.6rem, 3vw, 2.5rem); /* Tamanho responsivo do título */
   margin: 0; /* Remove margem padrão do h1 */
   letter-spacing: 1px; /* Espaçamento entre letras */
-  color: #fff; /* Texto branco para contraste */
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Pequeno sombreado de texto */
+  color: var(--text); /* Texto da cor do tema */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25); /* Pequeno sombreado de texto */
 }
 
 main {
@@ -45,18 +82,18 @@ main {
 
 .profiles {
   display: grid; /* Container em grid para perfis */
-  gap: 1.2rem; /* Espaço entre itens em grid */
-  width: min(100%, 520px); /* Largura máxima de 520px ou 100% */
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Colunas responsivas */
+  gap: 1rem; /* Espaço entre itens em grid */
+  width: min(100%, 600px); /* Largura máxima de 600px ou 100% */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Colunas responsivas */
 }
 
 .profile {
-  background: linear-gradient(180deg, #2c2c2c 0%, #1b1b1b 100%); /* Fundo degradê do card */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Borda semi-transparente */
+  background: var(--surface); /* Fundo do card conforme tema */
+  border: 1px solid rgba(0, 0, 0, 0.08); /* Borda suave */
   border-radius: var(--radius); /* Cantos arredondados */
   overflow: hidden; /* Esconde overflow para manter borda limpa */
   box-shadow: var(--shadow); /* Sombra aplicada no card */
-  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; /* Animação suave */
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease;
   cursor: pointer; /* Indica clicável */
 }
 
@@ -85,7 +122,7 @@ main {
 figcaption {
   margin-top: 0.7rem; /* Espaço acima da legenda */
   font-size: 0.95rem; /* Tamanho de fonte */
-  color: #fff; /* Texto branco */
+  color: var(--text); /* Texto do tema */
   font-weight: 600; /* Peso semi-negrito */
 }
 
@@ -96,11 +133,12 @@ figcaption {
 
   header {
     padding: 1rem; /* Ajusta padding do header no mobile */
+    margin-top: 3em;
   }
 
   .profiles {
-    gap: 0.9rem; /* Reduz espaçamento entre perfis */
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Ajuste de coluna para mobile */
+    gap: 1rem; /* Reduz espaçamento entre perfis */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Ajuste de coluna para mobile */
   }
 }
 

@@ -11,6 +11,7 @@
 <body>
     <header>
         <h1>Quem está assistindo?</h1>
+        <button id="theme-toggle" type="button" aria-label="Alternar tema">☾</button>
     </header>
     
     <main>
@@ -41,7 +42,33 @@
                     <img src="assets/perfil-4.jpg" alt="Imagem de um boné azul">
                     <figcaption>Pedro</figcaption>
                 </figure>
+            </article>
         </section>
     </main>
+
+    <script>
+      const themeToggle = document.getElementById('theme-toggle');
+      const storedTheme = localStorage.getItem('theme');
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        themeToggle.textContent = theme === 'light' ? '☾' : '☀';
+        themeToggle.setAttribute('aria-label', theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro');
+      }
+
+      function initTheme() {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = storedTheme || (prefersDark ? 'dark' : 'light');
+        applyTheme(theme);
+      }
+
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+      });
+
+      initTheme();
+    </script>
 </body>
 </html>
