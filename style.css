@@ -97,6 +97,11 @@ main {
   cursor: pointer; /* Indica clicável */
 }
 
+.profile-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .profile:hover,
 .profile:focus-within {
   transform: translateY(-4px) scale(1.02); /* Elevação ao passar o mouse */
@@ -141,4 +146,3 @@ figcaption {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Ajuste de coluna para mobile */
   }
 }
-
